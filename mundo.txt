@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+
+<sdf version="1.6">
+  <world name="default">
+
+    <!-- FÍSICA OPTIMIZADA -->
+    <physics name="fast" type="ode">
+      <real_time_update_rate>250</real_time_update_rate>
+      <max_step_size>0.002</max_step_size>
+      <ode>
+        <solver>
+          <iters>20</iters>
+          <sor>1.0</sor>
+        </solver>
+      </ode>
+    </physics>
+
+    <!-- MODELOS BÁSICOS -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- ESCENA OPTIMIZADA -->
+    <scene>
+      <ambient>0.7 0.7 0.7 1</ambient>
+      <background>0.4 0.4 0.5 1</background>
+      <shadows>false</shadows>
+      <grid>false</grid>
+    </scene>
+
+    <!-- MUROS PERIMETRALES -->
+    <model name="walls">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="wall_link">
+        <!-- Pared norte -->
+        <collision name="wall_north">
+          <pose>0 10 1 0 0 0</pose>
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+        </collision>
+        <visual name="wall_north_visual">
+          <pose>0 10 1 0 0 0</pose>
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient></material>
+        </visual>
+
+        <!-- Pared sur -->
+        <collision name="wall_south">
+          <pose>0 -10 1 0 0 0</pose>
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+        </collision>
+        <visual name="wall_south_visual">
+          <pose>0 -10 1 0 0 0</pose>
+          <geometry><box><size>20 0.2 2</size></box></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient></material>
+        </visual>
+
+        <!-- Pared este -->
+        <collision name="wall_east">
+          <pose>10 0 1 0 0 0</pose>
+          <geometry><box><size>0.2 20 2</size></box></geometry>
+        </collision>
+        <visual name="wall_east_visual">
+          <pose>10 0 1 0 0 0</pose>
+          <geometry><box><size>0.2 20 2</size></box></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient></material>
+        </visual>
+
+        <!-- Pared oeste -->
+        <collision name="wall_west">
+          <pose>-10 0 1 0 0 0</pose>
+          <geometry><box><size>0.2 20 2</size></box></geometry>
+        </collision>
+        <visual name="wall_west_visual">
+          <pose>-10 0 1 0 0 0</pose>
+          <geometry><box><size>0.2 20 2</size></box></geometry>
+          <material><ambient>0.5 0.5 0.5 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- OBSTÁCULOS -->
+    <model name="obstacle_box_1">
+      <static>true</static>
+      <pose>2 2 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 1 0.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.2 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_box_2">
+      <static>true</static>
+      <pose>-3 -2 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1.2 0.8 0.6</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1.2 0.8 0.6</size></box></geometry>
+          <material><ambient>0.2 0.8 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_box_3">
+      <static>true</static>
+      <pose>-5 4 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>1 2 0.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>1 2 0.5</size></box></geometry>
+          <material><ambient>0.2 0.2 0.8 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_box_4">
+      <static>true</static>
+      <pose>6 -5 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry><box><size>2 1 0.5</size></box></geometry>
+        </collision>
+        <visual name="visual">
+          <geometry><box><size>2 1 0.5</size></box></geometry>
+          <material><ambient>0.8 0.8 0.2 1</ambient></material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
+
